@@ -5,10 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Views\Departments\**" />
-    <Content Remove="Views\Departments\**" />
-    <EmbeddedResource Remove="Views\Departments\**" />
-    <None Remove="Views\Departments\**" />
+    <Compile Remove="Models\Departments\**" />
+    <Content Remove="Models\Departments\**" />
+    <EmbeddedResource Remove="Models\Departments\**" />
+    <None Remove="Models\Departments\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20220607025215_Initial.cs" />
+    <Compile Remove="Migrations\20220607025215_Initial.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
