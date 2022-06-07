@@ -6,9 +6,13 @@
 
   <ItemGroup>
     <Compile Remove="Models\Departments\**" />
+    <Compile Remove="Views\NovaPasta1\**" />
     <Content Remove="Models\Departments\**" />
+    <Content Remove="Views\NovaPasta1\**" />
     <EmbeddedResource Remove="Models\Departments\**" />
+    <EmbeddedResource Remove="Views\NovaPasta1\**" />
     <None Remove="Models\Departments\**" />
+    <None Remove="Views\NovaPasta1\**" />
   </ItemGroup>
 
   <ItemGroup>
