@@ -6,22 +6,29 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SalesWebMVC.Models;
+using SalesWebMVC.Services;
 
 namespace SalesWebMVC.Controllers
 {
     public class SellersController : Controller
     {
         private readonly SalesWebMVCContext _context;
-
-        public SellersController(SalesWebMVCContext context)
+        private readonly SellerService _sellerService;
+        public SellersController(SellerService sellerService)
         {
-            _context = context;
+            _sellerService = sellerService;
         }
+
+        //public SellersController(SalesWebMVCContext context)
+        //{
+        //    _context = context;
+        //}
 
         // GET: Sellers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Seller.ToListAsync());
+            var list = _sellerService.FindAll();
+            return View(list);
         }
 
         // GET: Sellers/Details/5
