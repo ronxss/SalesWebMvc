@@ -25,7 +25,7 @@ namespace SalesWebMVC.Controllers
         //}
 
         // GET: Sellers
-        public async Task<IActionResult> Index()
+        public  IActionResult Index()
         {
             var list = _sellerService.FindAll();
             return View(list);
@@ -60,12 +60,11 @@ namespace SalesWebMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Email,BirthDate,BaseSalary")] Seller seller)
+        public IActionResult Create(Seller seller)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(seller);
-                await _context.SaveChangesAsync();
+                _sellerService.Insert(seller);
                 return RedirectToAction(nameof(Index));
             }
             return View(seller);
