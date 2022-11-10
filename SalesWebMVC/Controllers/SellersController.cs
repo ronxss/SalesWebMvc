@@ -24,11 +24,6 @@ namespace SalesWebMVC.Controllers
             _context = context;
         }
 
-        //public SellersController(SalesWebMVCContext context)
-        //{
-        //    _context = context;
-        //}
-
         // GET: Sellers
         public IActionResult Index()
         {
