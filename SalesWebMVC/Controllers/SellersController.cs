@@ -16,10 +16,11 @@ namespace SalesWebMVC.Controllers
         private readonly SalesWebMVCContext _context;
         private readonly SellerService _sellerService;
         private readonly DepartmentService _departmentService;
-        public SellersController(SellerService sellerService, DepartmentService departmentService)
+        public SellersController(SellerService sellerService, DepartmentService departmentService, SalesWebMVCContext context)
         {
             _sellerService = sellerService;
             _departmentService = departmentService;
+            _context = context;
         }
 
         //public SellersController(SalesWebMVCContext context)
@@ -127,15 +128,15 @@ namespace SalesWebMVC.Controllers
         }
 
         // GET: Sellers/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var seller = await _context.Seller
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var seller = _context.Seller
+                .FirstOrDefault(m => m.Id == id);
             if (seller == null)
             {
                 return NotFound();
@@ -147,11 +148,9 @@ namespace SalesWebMVC.Controllers
         // POST: Sellers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var seller = await _context.Seller.FindAsync(id);
-            _context.Seller.Remove(seller);
-            await _context.SaveChangesAsync();
+            _sellerService.Remove(id);
             return RedirectToAction(nameof(Index));
         }
 
