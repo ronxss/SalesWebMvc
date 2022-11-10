@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SalesWebMVC.Models;
+using SalesWebMVC.Services.Exceptions;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace SalesWebMVC.Services
 {
@@ -20,6 +19,7 @@ namespace SalesWebMVC.Services
         {
             return _context.Seller.Include(s => s.Department).ToList();
         }
+
         public Seller FindById(int id)
         {
             return _context.Seller.FirstOrDefault(s => s.Id == id);
@@ -36,6 +36,23 @@ namespace SalesWebMVC.Services
         {
             _context.Add(obj);
             _context.SaveChanges();
+        }
+
+        public void Update(Seller obj)
+        {
+            if (!_context.Seller.Any(x => x.Id == obj.Id))
+            {
+                throw new NotFoundException("Id not found");
+            }
+            try
+            {
+                _context.Update(obj);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                throw new DbConcurrencyException(e.Message);
+            }
         }
     }
 }

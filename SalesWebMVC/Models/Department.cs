@@ -19,15 +19,15 @@ namespace SalesWebMVC.Models
             Id = id;
             Name = name;
         }
+
         public void AddSeller(Seller seller)
         {
             Sellers.Add(seller);
         }
+
         public double TotalSales(DateTime initialDate, DateTime finalDate)
         {
             return Sellers.Sum(seller => seller.TotalSales(initialDate, finalDate));
         }
-
     }
-
 }

@@ -17,6 +17,5 @@ namespace SalesWebMVC.Services
         {
             return _context.Department.OrderBy(x => x.Name).ToList();
         }
-
     }
 }

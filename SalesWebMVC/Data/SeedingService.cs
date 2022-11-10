@@ -1,7 +1,7 @@
-﻿using System;
-using SalesWebMVC.Models;
-using System.Linq;
+﻿using SalesWebMVC.Models;
 using SalesWebMVC.Models.Enums;
+using System;
+using System.Linq;
 
 namespace SalesWebMVC.Data
 {
@@ -13,9 +13,10 @@ namespace SalesWebMVC.Data
         {
             _context = context;
         }
+
         public void Seed()
         {
-            if(_context.Department.Any() ||
+            if (_context.Department.Any() ||
                _context.Seller.Any() ||
                 _context.SalesRecord.Any())
             {
@@ -38,8 +39,6 @@ namespace SalesWebMVC.Data
             Seller s5 = new Seller(5, "Donald Blue", "donald@gmail.com", new DateTime(2000, 1, 9), 4000.0, d3);
 
             Seller s6 = new Seller(6, "Alex Pink", "bob@gmail.com", new DateTime(1997, 3, 4), 3000.0, d2);
-
-
 
             SalesRecord r1 = new SalesRecord(1, new DateTime(2018, 09, 25), 11000.0, SaleStatus.Billed, s1);
 
@@ -106,12 +105,12 @@ namespace SalesWebMVC.Data
             _context.Seller.AddRange(s1, s2, s3, s4, s5, s6);
 
             _context.SalesRecord.AddRange(
-                r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, 
-                r11, r12, r13, r14, r15, r16, r17, r18, r19, r20, 
+                r1, r2, r3, r4, r5, r6, r7, r8, r9, r10,
+                r11, r12, r13, r14, r15, r16, r17, r18, r19, r20,
                 r21, r22, r23, r24, r25, r26, r27, r28, r29, r30
                 );
 
             _context.SaveChanges();
-        }    
+        }
     }
 }
